@@ -1,23 +1,29 @@
 import React from "react";
-import { Text, TouchableHighlight, StyleSheet, View } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import {
+  Alert,
+  Text,
+  TouchableHighlight,
+  StyleSheet,
+  View,
+} from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Choice = ({ text, isCorrect, isSelected, onPress }) => {
   const icon = isCorrect ? "thumbs-up" : "thumbs-down";
-  const color = isSelected ? (isCorrect ? "green" : "red") : "black";
 
   var touchProps = {
     activeOpacity: 0.5,
-    underlayColor: isCorrect ? "green" : "red", // <-- "backgroundColor" will be always overwritten by "underlayColor"
+    underlayColor: isCorrect ? "green" : "red",
     style: styles.container,
-    onPress: () => console.log("HELLO"), // <-- "onPress" is apparently required
+    // TODO: replace onPress with animation trigger
+    onPress: () => Alert.alert(isCorrect ? "Correct!" : "Incorrect!"),
   };
 
   return (
     <TouchableHighlight {...touchProps}>
       <View style={styles.wrapper}>
-        <Text style={styles.text}>{text}</Text>
-        <FontAwesome name={icon} size={24} color={color} />
+        <Text style={[styles.text, { width: "80%" }]}>{text}</Text>
+        <Icon name={icon} size={24} color={"white"} />
       </View>
     </TouchableHighlight>
   );

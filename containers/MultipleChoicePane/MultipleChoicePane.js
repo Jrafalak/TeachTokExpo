@@ -14,9 +14,6 @@ const MultipleChoicePane = ({ options, correctAnswerId }) => {
           />
         ))}
       </View>
-      <View style={styles.actionButtonsContainer}>
-        {/* Add your action buttons here */}
-      </View>
     </View>
   );
 };
@@ -24,14 +21,10 @@ const MultipleChoicePane = ({ options, correctAnswerId }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    marginBottom: 20,
   },
   choicesContainer: {
-    flex: 3,
-  },
-  actionButtonsContainer: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: "white",
   },
 });
 
