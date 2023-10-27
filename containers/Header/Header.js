@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import moment from "moment";
-
 import Icon from "react-native-vector-icons/FontAwesome";
-
-import TimerIcon from "react-native-vector-icons/MaterialIcons";
+import TimerIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Header = (props) => {
   const { counter } = props;
@@ -31,7 +29,7 @@ const Header = (props) => {
 const styles = StyleSheet.create({
   header: {
     position: "absolute",
-    top: 20,
+    top: 0,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -40,8 +38,6 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     borderBottomColor: "black",
     borderBottomWidth: 1,
-    borderTopColor: "black",
-    borderTopWidth: 1,
   },
   headerText: {
     color: "white",
