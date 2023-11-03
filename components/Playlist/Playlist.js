@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import PlaylistIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "@expo/vector-icons/MaterialIcons";
+import PlaylistIcon from "@expo/vector-icons/MaterialCommunityIcons";
 
 const Playlist = ({ text }) => {
   return (

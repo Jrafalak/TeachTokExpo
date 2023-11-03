@@ -7,3 +7,12 @@ export async function fetchData(url) {
     console.error(error);
   }
 }
+
+export function secondsToHms(d) {
+  var m = Math.floor(d / 1000 / 60);
+  var s = Math.floor((d % 3600) % 60);
+
+  var mDisplay = m > 0 ? m + " m " : "";
+  var sDisplay = s > 0 ? s + " s" : "";
+  return mDisplay + sDisplay;
+}

@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   description: {
     color: "white",
     fontSize: 12,
+    marginBottom: 5,
   },
 });
 

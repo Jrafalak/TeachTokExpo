@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import moment from "moment";
-import Icon from "react-native-vector-icons/FontAwesome";
-import TimerIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "@expo/vector-icons/FontAwesome";
+import TimerIcon from "@expo/vector-icons/MaterialCommunityIcons";
+import { secondsToHms } from "../../utils";
 
-const Header = (props) => {
-  const { counter } = props;
-
+const Header = ({ counter }) => {
   return (
-    <View style={styles.header}>
+    <View testID="header" style={styles.header}>
       <View style={styles.timer}>
         <TimerIcon name="timer" size={20} color="#b6b5b0" />
-        <Text style={styles.timerText}>{moment(counter).format("mm:ss")}</Text>
+        <Text testID="timer-text" style={styles.timerText}>
+          {counter > 0 ? secondsToHms(counter) : "0 m"}
+        </Text>
       </View>
       <View style={styles.forYouView}>
         <Text style={{ ...styles.headerText, ...styles.forYouText }}>
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 20,
+    padding: 15,
     marginBottom: 40,
     height: 70,
   },

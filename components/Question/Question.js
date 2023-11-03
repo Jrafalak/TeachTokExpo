@@ -4,16 +4,13 @@ import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 const Question = ({ text }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.outterText}>
-        <Text testID="question-text" style={styles.text}>
-          {text}
-        </Text>
+      <Text testID="question-text" style={styles.text}>
+        {text}
       </Text>
     </View>
   );
 };
 
-//TODO: need to make test highlight have borderradius
 const styles = StyleSheet.create({
   container: {
     marginTop: 90,
@@ -21,13 +18,14 @@ const styles = StyleSheet.create({
     height: 200,
     width: "100%",
   },
-  outterText: {
-    maxWidth: "65%",
-  },
   text: {
+    padding: 10,
+    maxWidth: "65%",
     color: "#fff",
     fontSize: 20,
     backgroundColor: "rgba(0, 0, 0, 0.6)",
+    borderRadius: 10,
+    overflow: "hidden",
   },
 });
 

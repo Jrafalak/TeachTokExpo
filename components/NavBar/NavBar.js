@@ -1,11 +1,11 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
-import TimerIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "@expo/vector-icons/Ionicons";
+import TimerIcon from "@expo/vector-icons/MaterialCommunityIcons";
 
 const NavBar = () => {
   return (
-    <View style={styles.container}>
+    <View testID="navbar-container" style={styles.container}>
       <TouchableOpacity style={styles.button}>
         <Icon name="home-sharp" size={24} color="#fff" />
         {/* a complete app would obviously conditionally set one button to active, hard-coding is just for example */}

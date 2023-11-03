@@ -1,10 +1,12 @@
 import React from "react";
 import { Alert, View, StyleSheet } from "react-native";
 import ActionButton from "../../components/ActionButton/ActionButton";
+import Avatar from "../../components/Avatar/Avatar";
 
-const ActionButtonRow = () => {
+const ActionButtonRow = (imageUrl) => {
   return (
-    <View style={styles.container}>
+    <View testID="action-button-row" style={styles.container}>
+      <Avatar imageUrl={imageUrl} />
       <ActionButton
         iconName="heart"
         numberOfPresses="87"
@@ -42,7 +44,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 10,
     paddingLeft: 20,
     borderRadius: 20,
     elevation: 5,
