@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import moment from "moment";
 import Icon from "@expo/vector-icons/FontAwesome";
 import TimerIcon from "@expo/vector-icons/MaterialCommunityIcons";
-import { secondsToHms } from "../../utils";
+import { milliToMinuteSecond } from "../../utils";
 
 const Header = ({ counter }) => {
   return (
@@ -11,7 +11,7 @@ const Header = ({ counter }) => {
       <View style={styles.timer}>
         <TimerIcon name="timer" size={20} color="#b6b5b0" />
         <Text testID="timer-text" style={styles.timerText}>
-          {counter > 0 ? secondsToHms(counter) : "0 m"}
+          {counter > 0 ? milliToMinuteSecond(counter) : "0 m"}
         </Text>
       </View>
       <View style={styles.forYouView}>

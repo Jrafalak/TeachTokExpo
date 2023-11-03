@@ -10,10 +10,18 @@ describe("MultipleChoicePane", () => {
   ];
   const correctAnswerId = 2;
 
+  const defaultProps = {
+    questionId: 1,
+    options,
+    correctAnswerId,
+    completedQuestions: [
+      { id: 1, data: { correctAnswer: "A", selectedAnswer: 2 } },
+    ],
+    onPress: jest.fn(),
+  };
+
   it("renders all options", () => {
-    const { getByTestId } = render(
-      <MultipleChoicePane options={options} correctAnswerId={correctAnswerId} />
-    );
+    const { getByTestId } = render(<MultipleChoicePane {...defaultProps} />);
 
     expect(getByTestId("multiple-choice-pane").props.children.length).toBe(3);
   });

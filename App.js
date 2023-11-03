@@ -149,7 +149,7 @@ export default function App() {
 
   return (
     <>
-      <SafeAreaView style={styles.safeAreaView}>
+      <SafeAreaView testID="app" style={styles.safeAreaView}>
         <ImageBackground
           source={{ uri: image }}
           resizeMode="cover"
