@@ -6,8 +6,7 @@ TeachTok is a prototype of an educational app with similar UI/UX to TikTok. User
 ### Gaps
 - vanilla js, not typescript
 - the text highlighting is not highlighting in a span style, just the whole text view area.
-- I had an issue with my animation libs, so for now there are arrow buttons that replace the swipe up/down interaction 
-  - occasionally need to double tap arrow
+- Animation didn't animate, but it recognizes swipe gesture.
 
 ### Run the app
 - clone repo `git clone https://github.com/Jrafalak/TeachTokExpo.git`

@@ -8,8 +8,15 @@ import {
   View,
   Alert,
   TouchableHighlight,
+  Dimensions,
 } from "react-native";
 import Icon from "@expo/vector-icons/Ionicons";
+import {
+  GestureHandlerRootView,
+  GestureDetector,
+  Gesture,
+  Directions,
+} from "react-native-gesture-handler";
 import { fetchData } from "./utils";
 import { baseUrl, questionsUrlParam, answerUrlParam } from "./consts.json";
 import Header from "./containers/Header/Header";
@@ -147,6 +154,21 @@ export default function App() {
     }
   };
 
+  const fling = Gesture.Fling()
+    .direction(Directions.UP | Directions.DOWN)
+    .onStart((e) => {
+      // Might have missed it, but couldn't find a good way to access the direction of the fling gesture.
+      // So this approach just checks if the gesture started above or below the halfway point of the screen,
+      // assuming the user's fling gesture would start in one half of the screen and move to the opposite.
+      const halfwayPoint = Dimensions.get("window").height / 2;
+
+      if (e.absoluteY < halfwayPoint) {
+        navToViewedQuestion(false);
+      } else {
+        navToViewedQuestion(true);
+      }
+    });
+
   return (
     <>
       <SafeAreaView testID="app" style={styles.safeAreaView}>
@@ -157,58 +179,41 @@ export default function App() {
         />
         <View style={styles.overlay} />
 
-        <View style={styles.content}>
-          <View style={styles.topHalf}>
-            <Header style={styles.header} counter={counter} />
-            <View style={styles.arrowNav}>
-              <TouchableHighlight
-                style={styles.arrowNavBtn}
-                activeOpacity={0.5}
-                underlayColor="rgba(255, 255, 255, 0.1)"
-                onPress={() => {
-                  navToViewedQuestion(false);
-                }}
-              >
-                <Icon
-                  name="arrow-back-circle-outline"
-                  size={30}
-                  color="rgba(255, 255, 255, 0.5)"
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <GestureDetector gesture={fling}>
+            <View style={styles.content}>
+              <View style={styles.topHalf}>
+                <Header style={styles.header} counter={counter} />
+                <Question
+                  style={styles.question}
+                  text={question || "Loading..."}
                 />
-              </TouchableHighlight>
-              <TouchableHighlight
-                style={styles.arrowNavBtn}
-                activeOpacity={0.5}
-                underlayColor="rgba(255, 255, 255, 0.1)"
-                onPress={() => {
-                  navToViewedQuestion(true);
-                }}
-              >
-                <Icon
-                  name="arrow-forward-circle-outline"
-                  size={30}
-                  color="rgba(255, 255, 255, 0.5)"
+              </View>
+              <View style={styles.actionsContainer}>
+                <View style={styles.answersDescription}>
+                  <MultipleChoicePane
+                    style={styles.choices}
+                    questionId={id}
+                    options={options || []}
+                    correctAnswerId={answer}
+                    completedQuestions={completedQuestions}
+                    onPress={onSelectChoice}
+                  />
+                  <Description author={author} description={description} />
+                </View>
+                <ActionButtonRow
+                  imageUrl={avatar}
+                  style={styles.actionButtons}
                 />
-              </TouchableHighlight>
-            </View>
-            <Question style={styles.question} text={question || "Loading..."} />
-          </View>
-          <View style={styles.actionsContainer}>
-            <View style={styles.answersDescription}>
-              <MultipleChoicePane
-                style={styles.choices}
-                questionId={id}
-                options={options || []}
-                correctAnswerId={answer}
-                completedQuestions={completedQuestions}
-                onPress={onSelectChoice}
+              </View>
+              <Playlist
+                style={styles.playlist}
+                text={`Playlist - ${playlist}`}
               />
-              <Description author={author} description={description} />
+              <NavBar style={styles.navBar} />
             </View>
-            <ActionButtonRow imageUrl={avatar} style={styles.actionButtons} />
-          </View>
-          <Playlist style={styles.playlist} text={`Playlist - ${playlist}`} />
-          <NavBar style={styles.navBar} />
-        </View>
+          </GestureDetector>
+        </GestureHandlerRootView>
       </SafeAreaView>
       <SafeAreaView style={{ flex: 0, backgroundColor: "black" }} />
     </>
@@ -236,22 +241,6 @@ const styles = StyleSheet.create({
     flexsDirection: "column",
     justifyContent: "space-between",
     alignItems: "flex-start",
-  },
-  arrowNav: {
-    marginTop: StatusBarRN.currentHeight + 50,
-    marginBottom: -50,
-    height: 50,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  arrowNavBtn: {
-    height: 50,
-    width: 50,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
   },
   actionsContainer: {
     flexDirection: "row",
