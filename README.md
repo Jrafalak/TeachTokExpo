@@ -14,6 +14,3 @@ TeachTok is a prototype of an educational app with similar UI/UX to TikTok. User
 - in the repo directory run `npm install; npx expo start;`
 - press `i` to start the iOS app
 - if the simulator asks you to open in Expo Go, press Yes
-
-### Video 
-The accomponying video can be found at this [link](https://drive.google.com/file/d/1S-DfNO6zirp3kCru5Cnep9J-m5zy39r7/view?usp=sharing)
